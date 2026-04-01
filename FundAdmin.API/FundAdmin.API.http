@@ -1,0 +1,6 @@
+@FundAdmin.API_HostAddress = http://localhost:5003
+
+GET {{FundAdmin.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
