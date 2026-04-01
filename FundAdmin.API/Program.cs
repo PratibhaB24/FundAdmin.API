@@ -17,6 +17,7 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 
 builder.Services.AddScoped<IFundService, FundService>();
 builder.Services.AddScoped<IInvestorService, InvestorService>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

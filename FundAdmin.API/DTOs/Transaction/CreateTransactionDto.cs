@@ -7,6 +7,5 @@ namespace FundAdmin.API.DTOs.Transaction
         public Guid InvestorId { get; set; }
         public TransactionType Type { get; set; }
         public decimal Amount { get; set; }
-        public DateTime TransactionDate { get; set; }
     }
 }
