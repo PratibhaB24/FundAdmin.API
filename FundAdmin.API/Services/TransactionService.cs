@@ -1,5 +1,6 @@
 ﻿using FundAdmin.API.Data;
 using FundAdmin.API.DTOs.Transaction;
+using FundAdmin.API.Exceptions;
 using FundAdmin.API.Models;
 using FundAdmin.API.Models.Enums;
 using FundAdmin.API.Services.Interfaces;
@@ -19,12 +20,12 @@ namespace FundAdmin.API.Services
         public async Task CreateAsync(CreateTransactionDto dto)
         {
             if (dto.Amount <= 0)
-                throw new Exception("Amount must be positive");
+                throw new BadRequestException("Amount must be greater than zero");
 
             var investor = await _context.Investors.FindAsync(dto.InvestorId);
 
             if (investor == null)
-                throw new Exception("Investor not found");
+                throw new NotFoundException("Investor not found");
 
             var transaction = new Transaction
             {

@@ -1,4 +1,5 @@
 using FundAdmin.API.Data;
+using FundAdmin.API.Middleware;
 using FundAdmin.API.Repositories;
 using FundAdmin.API.Services;
 using FundAdmin.API.Services.Interfaces;
@@ -19,6 +20,7 @@ builder.Services.AddScoped<IFundService, FundService>();
 builder.Services.AddScoped<IInvestorService, InvestorService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,6 +35,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthorization();
 
