@@ -1,13 +1,10 @@
 ﻿using FundAdmin.API.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Text.Json;
 
 namespace FundAdmin.API.Middleware
 {
-    using Microsoft.AspNetCore.Mvc;
-    using System.Net;
-    using System.Text.Json;
-
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;

@@ -1,9 +1,11 @@
 ﻿using FundAdmin.API.DTOs.Fund;
 using FundAdmin.API.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FundAdmin.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class FundsController : ControllerBase
