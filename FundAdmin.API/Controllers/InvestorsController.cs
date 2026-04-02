@@ -17,10 +17,16 @@ namespace FundAdmin.API.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Retrieves all investors.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Get()
             => Ok(await _service.GetAllAsync());
 
+        /// <summary>
+        /// Creates a new investor.
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Post(CreateInvestorDto dto)
         {
@@ -28,6 +34,9 @@ namespace FundAdmin.API.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Updates an existing investor.
+        /// </summary>
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, UpdateInvestorDto dto)
         {
@@ -35,6 +44,9 @@ namespace FundAdmin.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Updates an existing investor.
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {

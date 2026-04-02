@@ -17,6 +17,9 @@ namespace FundAdmin.API.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Creates a new transaction (Subscription or Redemption).
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Create(CreateTransactionDto dto)
         {
@@ -24,6 +27,9 @@ namespace FundAdmin.API.Controllers
             return Ok("Transaction created successfully");
         }
 
+        /// <summary>
+        /// Retrieves all transactions for a specific investor.
+        /// </summary>
         [HttpGet("investor/{investorId}")]
         public async Task<IActionResult> GetByInvestor(Guid investorId)
         {
@@ -31,6 +37,9 @@ namespace FundAdmin.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Retrieves total subscribed and redeemed amounts for a fund.
+        /// </summary>
         [HttpGet("fund/{fundId}/summary")]
         public async Task<IActionResult> GetFundSummary(Guid fundId)
         {

@@ -6,6 +6,7 @@ using FundAdmin.API.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -73,6 +74,11 @@ builder.Services.AddSwaggerGen(options =>
             new string[] {}
         }
     });
+
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+
+    options.IncludeXmlComments(xmlPath);
 });
 
 var app = builder.Build();

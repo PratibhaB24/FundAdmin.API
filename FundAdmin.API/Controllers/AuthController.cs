@@ -15,6 +15,10 @@ namespace FundAdmin.API.Controllers
             _tokenService = tokenService;
         }
 
+        /// <summary>
+        /// Authenticates a user and returns a JWT token if credentials are valid.
+        /// Use mock credentails: Username = "admin" and Password = "password"
+        /// </summary>
         [HttpPost("login")]
         public IActionResult Login(LoginDto dto)
         {
