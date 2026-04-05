@@ -42,7 +42,7 @@ namespace FundAdmin.API.Services
             };
         }
 
-        public async Task CreateAsync(CreateFundDto dto)
+        public async Task<FundResponseDto> CreateAsync(CreateFundDto dto)
         {
             var fund = new Fund
             {
@@ -54,6 +54,14 @@ namespace FundAdmin.API.Services
 
             await _repo.AddAsync(fund);
             await _repo.SaveAsync();
+
+            return new FundResponseDto
+            {
+                FundId = fund.FundId,
+                Name = fund.Name,
+                Currency = fund.Currency,
+                LaunchDate = fund.LaunchDate
+            };
         }
 
         public async Task UpdateAsync(Guid id, UpdateFundDto dto)

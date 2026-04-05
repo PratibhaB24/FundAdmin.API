@@ -7,7 +7,7 @@ namespace FundAdmin.API.Services.Interfaces
     {
         Task<IEnumerable<FundResponseDto>> GetAllAsync();
         Task<FundResponseDto> GetByIdAsync(Guid id);
-        Task CreateAsync(CreateFundDto dto);
+        Task<FundResponseDto> CreateAsync(CreateFundDto dto);
         Task UpdateAsync(Guid id, UpdateFundDto dto);
         Task DeleteAsync(Guid id);
     }
