@@ -1,5 +1,6 @@
 ﻿using FundAdmin.API.Data;
 using FundAdmin.API.DTOs.Transaction;
+using FundAdmin.API.DTOs.Transaction.v2;
 using FundAdmin.API.Exceptions;
 using FundAdmin.API.Models;
 using FundAdmin.API.Models.Enums;
@@ -73,6 +74,25 @@ namespace FundAdmin.API.Services
                 TotalRedeemed = transactions
                     .Where(t => t.Type == TransactionType.Redemption)
                     .Sum(t => t.Amount)
+            };
+        }
+
+        public async Task<FundAnalyticsDto> GetFundAnalyticsAsync(Guid fundId)
+        {
+            var netInvestment = await _context.Transactions
+                .Where(t => t.Investor.FundId == fundId)
+                .SumAsync(t => t.Type == TransactionType.Subscription
+                    ? t.Amount
+                    : -t.Amount);
+
+            var investorCount = await _context.Investors
+                .CountAsync(i => i.FundId == fundId);
+
+            return new FundAnalyticsDto
+            {
+                FundId = fundId,
+                NetInvestment = netInvestment,
+                InvestorCount = investorCount
             };
         }
     }

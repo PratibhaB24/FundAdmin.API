@@ -6,7 +6,7 @@ namespace FundAdmin.API.Models.Enums
 {
     public enum TransactionType
     {
-        Subscription,
-        Redemption
+        Subscription = 1,
+        Redemption = 2
     }
 }

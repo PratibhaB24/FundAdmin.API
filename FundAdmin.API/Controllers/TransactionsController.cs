@@ -40,11 +40,11 @@ namespace FundAdmin.API.Controllers
         /// <summary>
         /// Retrieves total subscribed and redeemed amounts for a fund.
         /// </summary>
-        [HttpGet("fund/{fundId}/summary")]
-        public async Task<IActionResult> GetFundSummary(Guid fundId)
-        {
-            var result = await _service.GetFundSummaryAsync(fundId);
-            return Ok(result);
-        }
+        //[HttpGet("fund/{fundId}/summary")]
+        //public async Task<IActionResult> GetFundSummary(Guid fundId)
+        //{
+        //    var result = await _service.GetFundSummaryAsync(fundId);
+        //    return Ok(result);
+        //}
     }
 }

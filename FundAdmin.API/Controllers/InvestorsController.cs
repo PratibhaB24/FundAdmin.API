@@ -45,7 +45,7 @@ namespace FundAdmin.API.Controllers
         }
 
         /// <summary>
-        /// Updates an existing investor.
+        /// Deletes an existing investor.
         /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
