@@ -98,7 +98,11 @@ Update connection string in:
 Open Package Manager Console:
 
 ```bash
-Add-Migration InitialCreate
+### Apply existing migrations
+Update-Database
+
+### Create a new migration (only when there are model/schema changes; not needed for initial setup or testing the repository):
+Add-Migration <MigrationName>
 Update-Database
 ```
 
