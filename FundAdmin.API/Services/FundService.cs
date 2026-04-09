@@ -1,4 +1,5 @@
 ﻿using FundAdmin.API.DTOs.Fund;
+using FundAdmin.API.Exceptions;
 using FundAdmin.API.Models;
 using FundAdmin.API.Repositories;
 using FundAdmin.API.Services.Interfaces;
@@ -31,7 +32,7 @@ namespace FundAdmin.API.Services
         {
             Fund fund = await _repo.GetByIdAsync(id);
 
-            if (fund == null) return null;
+            if (fund == null) throw new NotFoundException("Fund not found");
 
             return new FundResponseDto
             {

@@ -59,21 +59,44 @@ namespace FundAdmin.API.Services
 
         public async Task<FundTransactionSummaryDto> GetFundSummaryAsync(Guid fundId)
         {
-            var transactions = await _context.Transactions
-                .Include(t => t.Investor)
-                .Where(t => t.Investor.FundId == fundId)
-                .ToListAsync();
+            //var transactions = await _context.Transactions
+            //    .Include(t => t.Investor)
+            //    .Where(t => t.Investor.FundId == fundId)
+            //    .ToListAsync();
 
-            return new FundTransactionSummaryDto
+            //return new FundTransactionSummaryDto
+            //{
+            //    FundId = fundId,
+            //    TotalSubscribed = transactions
+            //        .Where(t => t.Type == TransactionType.Subscription)
+            //        .Sum(t => t.Amount),
+
+            //    TotalRedeemed = transactions
+            //        .Where(t => t.Type == TransactionType.Redemption)
+            //        .Sum(t => t.Amount)
+            //};
+
+            var result = await _context.Transactions
+       .Where(t => t.Investor.FundId == fundId)
+       .GroupBy(t => t.Investor.FundId)
+       .Select(g => new FundTransactionSummaryDto
+       {
+           FundId = g.Key,
+           TotalSubscribed = g
+               .Where(t => t.Type == TransactionType.Subscription)
+               .Sum(t => t.Amount),
+
+           TotalRedeemed = g
+               .Where(t => t.Type == TransactionType.Redemption)
+               .Sum(t => t.Amount)
+       })
+       .FirstOrDefaultAsync();
+
+            return result ?? new FundTransactionSummaryDto
             {
                 FundId = fundId,
-                TotalSubscribed = transactions
-                    .Where(t => t.Type == TransactionType.Subscription)
-                    .Sum(t => t.Amount),
-
-                TotalRedeemed = transactions
-                    .Where(t => t.Type == TransactionType.Redemption)
-                    .Sum(t => t.Amount)
+                TotalSubscribed = 0,
+                TotalRedeemed = 0
             };
         }
 
