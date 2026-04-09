@@ -29,7 +29,7 @@ namespace FundAdmin.API.Services
 
         public async Task<FundResponseDto> GetByIdAsync(Guid id)
         {
-            var fund = await _repo.GetByIdAsync(id);
+            Fund fund = await _repo.GetByIdAsync(id);
 
             if (fund == null) return null;
 

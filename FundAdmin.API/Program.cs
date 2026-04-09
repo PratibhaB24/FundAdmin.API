@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using FluentValidation;
 using FundAdmin.API.Data;
 using FundAdmin.API.Middleware;
 using FundAdmin.API.Repositories;
@@ -37,6 +38,13 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddControllers();
 
+// Add AutoMapper
+//builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(cfg => { }, typeof(Program).Assembly);
+
+// Add FluentValidation
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new ApiVersion(1, 0);
@@ -56,9 +64,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddScoped<IFundService, FundService>();
-builder.Services.AddScoped<IInvestorService, InvestorService>();
+//builder.Services.AddScoped<IInvestorService, InvestorService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IInvestorService, InvestorServiceV2>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

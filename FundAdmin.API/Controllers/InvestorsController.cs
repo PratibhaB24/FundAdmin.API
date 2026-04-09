@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FundAdmin.API.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class InvestorsController : ControllerBase
