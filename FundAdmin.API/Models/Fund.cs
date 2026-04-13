@@ -11,6 +11,6 @@ namespace FundAdmin.API.Models
         public string Currency { get; set; }
         public DateTime LaunchDate { get; set; }
 
-        public ICollection<Investor> Investors { get; set; }
+       // public ICollection<Investor> Investors { get; set; }
     }
 }

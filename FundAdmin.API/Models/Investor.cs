@@ -10,7 +10,7 @@ namespace FundAdmin.API.Models
         public string FullName { get; set; }
         public string Email { get; set; }
         public Guid FundId { get; set; }
-        public Fund Fund { get; set; }
-        public ICollection<Transaction> Transactions { get; set; }
+        //public Fund Fund { get; set; }
+        //public ICollection<Transaction> Transactions { get; set; }
     }
 }

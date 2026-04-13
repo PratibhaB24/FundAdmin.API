@@ -1,4 +1,5 @@
 ﻿using FundAdmin.API.DTOs.Fund;
+using FundAdmin.API.Exceptions;
 using FundAdmin.API.Models;
 using FundAdmin.API.Repositories;
 using FundAdmin.API.Services;
@@ -106,6 +107,20 @@ namespace FundAdmin.API.Tests.Services
 
             _mockRepo.Verify(r => r.Delete(It.IsAny<Fund>()), Times.Once);
             _mockRepo.Verify(r => r.SaveAsync(), Times.Once);
+        }
+
+        [Fact]
+        public async Task GetByIdAsync_ShouldThrowNotFoundException_WhenFundDoesNotExist()
+        {
+            var fundId = Guid.NewGuid();
+
+              _mockRepo.Setup(r => r.GetByIdAsync(fundId))
+                .ReturnsAsync((Fund)null);
+
+            var exception = await Assert.ThrowsAsync<NotFoundException>(
+                () => _service.GetByIdAsync(fundId));
+
+            Assert.Equal("Fund not found", exception.Message);
         }
     }
 }
